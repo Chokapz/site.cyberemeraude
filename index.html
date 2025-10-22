@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Émeraude - Sécurité numérique pour tous</title>
+    <title>Campagne de Sensibilisation Cybersécurité - Saint-Malo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
@@ -24,39 +24,43 @@
     </script>
     <style>
         body {
+            box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
         }
-        
         .gradient-bg {
             background: linear-gradient(135deg, #121212 0%, #2c2c2c 100%);
         }
-        
+        .card-shadow {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
         .card-hover:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 229, 255, 0.2);
         }
-        
         .btn-primary {
             background: linear-gradient(90deg, #00e5ff 0%, #00b8cc 100%);
             transition: all 0.3s ease;
         }
-        
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 229, 255, 0.4);
         }
-        
         .btn-secondary {
             border: 2px solid #00e5ff;
             transition: all 0.3s ease;
         }
-        
         .btn-secondary:hover {
             background-color: rgba(0, 229, 255, 0.1);
             transform: translateY(-2px);
         }
-        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
         .cyber-particle {
             position: absolute;
             background-color: #00e5ff;
@@ -64,23 +68,18 @@
             opacity: 0.3;
             animation: float 8s infinite ease-in-out;
         }
-        
         @keyframes float {
             0%, 100% { transform: translateY(0) translateX(0); }
             25% { transform: translateY(-15px) translateX(10px); }
             50% { transform: translateY(-5px) translateX(20px); }
             75% { transform: translateY(-10px) translateX(5px); }
         }
-        
-        .service-card:hover .icon-container {
-            background-color: #00e5ff;
-            color: #121212;
-        }
-        
         .logo-glow {
             filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.6));
         }
-        
+        .dark-card {
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+        }
         .shield-pulse {
             animation: pulse 2s infinite;
         }
@@ -90,607 +89,303 @@
             50% { opacity: 1; }
             100% { opacity: 0.8; }
         }
+        
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, #00e5ff 0%, transparent 70%);
+            border-radius: 50%;
+            animation: floatUp 15s infinite linear;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-    <!-- Navbar -->
-    <nav class="bg-dark text-white py-4 sticky top-0 z-50 shadow-lg">
-        <div class="container mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between items-center">
-            <div class="flex items-center mb-4 md:mb-0">
-                <div class="mr-3">
-                    <!-- Nouveau logo bouclier -->
-                    <svg class="w-10 h-10 logo-glow" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 5L85 20V50C85 70 70 85 50 95C30 85 15 70 15 50V20L50 5Z" fill="#121212" stroke="#00e5ff" stroke-width="3"/>
-                        <path class="shield-pulse" d="M50 15L75 25V50C75 65 65 75 50 85C35 75 25 65 25 50V25L50 15Z" fill="none" stroke="#00e5ff" stroke-width="2"/>
-                        <path d="M50 40L60 50L50 60L40 50L50 40Z" fill="#00e5ff"/>
-                        <path d="M50 25L65 32V48C65 58 58 65 50 70C42 65 35 58 35 48V32L50 25Z" stroke="#00e5ff" stroke-width="1" fill="none"/>
-                    </svg>
-                </div>
-                <div class="text-2xl font-bold flex items-center">
-                    <span class="text-white">CYBER</span>
-                    <span class="text-cyan ml-1">ÉMERAUDE</span>
-                </div>
-            </div>
-            <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
-                <a href="#accueil" class="hover:text-cyan transition-colors">Accueil</a>
-                <a href="#qui-sommes-nous" class="hover:text-cyan transition-colors">Qui sommes-nous ?</a>
-                <a href="#prestations" class="hover:text-cyan transition-colors">Prestations</a>
-                <a href="#tarifs" class="hover:text-cyan transition-colors">Tarifs</a>
-                <a href="#contact" class="btn-primary px-5 py-2 rounded-full text-dark font-medium">Contact</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="accueil" class="gradient-bg text-white relative overflow-hidden">
-        <!-- Cyber particles -->
-        <div class="cyber-particle w-3 h-3" style="top: 20%; left: 10%;"></div>
-        <div class="cyber-particle w-5 h-5" style="top: 40%; left: 20%;"></div>
-        <div class="cyber-particle w-2 h-2" style="top: 60%; left: 15%;"></div>
-        <div class="cyber-particle w-4 h-4" style="top: 30%; left: 80%;"></div>
-        <div class="cyber-particle w-3 h-3" style="top: 70%; left: 85%;"></div>
+<body class="h-full font-sans">
+    <main class="min-h-full gradient-bg">
+        <!-- Floating Particles -->
+        <div class="floating-particles" id="particles"></div>
         
-        <div class="container mx-auto px-4 py-4 md:py-8 relative z-10">
-            <div class="flex justify-center mb-8">
-                <!-- Nouveau logo bouclier (plus grand) -->
-                <img src="https://raw.githubusercontent.com/Chokapz/cyberemeraude.github.io/main/logofinal.png" alt="Logo Cyber Émeraude" class="w-80 h-80 object-contain mx-auto logo-glow" />
-            </div>
-            <div class="max-w-3xl mx-auto text-center">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Ensemble, protégeons notre vie numérique</h1>
-                <p class="text-xl md:text-2xl mb-10 text-gray-300">Cyber Émeraude, la cybersécurité pour tous : particuliers, pros et collectivités</p>
-                <div class="flex flex-col md:flex-row justify-center gap-4">
-                    <a href="#prestations" class="btn-primary px-8 py-3 rounded-full text-dark font-medium text-lg">Découvrir nos offres</a>
-                    <a href="#contact" class="btn-secondary px-8 py-3 rounded-full text-white font-medium text-lg">Demander un atelier</a>
+        <!-- Header -->
+        <header class="bg-dark/90 backdrop-blur-sm border-b border-cyan/20">
+            <div class="max-w-4xl mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <img src="https://raw.githubusercontent.com/Chokapz/cyberemeraude.github.io/main/logofinal.png" alt="Logo Cyber Émeraude" class="w-20 h-20 object-contain logo-glow" />
+                        <h1 class="text-white text-xl font-bold">LAECUM - Associations de Saint-Malo</h1>
+                    </div>
+                    <div class="text-cyan text-sm flex items-center space-x-2">
+                        <span>🔒</span>
+                        <span>Cybersécurité & Sensibilisation</span>
+                        <span>🛡️</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <svg class="absolute bottom-0 w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100">
-            <path fill="#f9fafb" fill-opacity="1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,100L1360,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path>
-        </svg>
-    </section>
+        </header>
 
-    <!-- Qui sommes-nous Section -->
-    <section id="qui-sommes-nous" class="py-16 md:py-24 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Qui sommes-nous ?</h2>
-                <div class="w-20 h-1 bg-cyan mx-auto mb-8"></div>
-            </div>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-white rounded-xl shadow-lg p-8 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-2 h-full bg-cyan"></div>
-                    <p class="text-lg leading-relaxed mb-6">
-                        <span class="font-semibold text-cyan">Cyber Émeraude</span> est une association bretonne engagée pour rendre la cybersécurité accessible à tous. Nous proposons des actions concrètes, simples et locales pour sensibiliser les particuliers, les TPE, les associations et les collectivités aux bonnes pratiques numériques.
-                    </p>
-                    <p class="text-lg leading-relaxed">
-                        Formé à la cybersécurité (Master Sécurité Informatique, Cybersécurité et Cybermenaces) et en poste en tant que "Network Detection Security Expert", notre fondateur et ses bénévoles s'engagent à vos côtés sur le terrain.
-                    </p>
+        <!-- Main Content -->
+        <div class="max-w-4xl mx-auto px-6 py-12">
+            <!-- Alert Card -->
+            <div class="bg-white rounded-2xl card-shadow card-hover p-8 mb-8 border border-gray-100 transition-all duration-300">
+                <div class="flex items-start space-x-4 mb-6">
+                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span class="text-2xl">🎣</span>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-3">INFORMATION IMPORTANTE</h2>
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            Vous venez de participer à une 
+                            <span class="font-semibold text-gray-700">campagne de phishing</span>, rassurez-vous, elle est établie par l'association 
+                            <span class="font-semibold text-cyan">"Cyber Emeraude"</span>, en collaboration avec l'association 
+                            <span class="font-semibold text-gray-700">LAECUM</span>.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Nos publics Section -->
-    <section class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Nos publics</h2>
-                <div class="w-20 h-1 bg-cyan mx-auto mb-8"></div>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Nous accompagnons tous ceux qui n'ont pas encore de suivi en cybersécurité et qui cherchent des solutions accessibles.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <!-- Particuliers -->
-                <div class="bg-white rounded-xl shadow-lg p-8 text-center card-hover transition-all duration-300">
-                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span class="text-4xl">👨‍👩‍👧‍👦</span>
+            <!-- Event Card -->
+            <div class="dark-card rounded-2xl card-shadow card-hover p-8 mb-8 border border-cyan/30 transition-all duration-300">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 btn-primary rounded-full flex items-center justify-center mx-auto mb-4 logo-glow">
+                        <span class="text-3xl text-white">🛡️</span>
                     </div>
-                    <h3 class="text-2xl font-semibold mb-4">Particuliers</h3>
-                    <p class="text-gray-600">Familles, jeunes, seniors cherchant à se protéger des menaces numériques.</p>
+                    <h2 class="text-2xl font-bold text-white mb-2">Intervention Gratuite</h2>
+                    <p class="text-gray-300">Vous êtes conviés à une Sensibilisation aux risques de Cybersécurité.</p>
+                    <p class="text-gray-300">Sujet d'actualité, aujourd'hui incontournable...</p>
                 </div>
-                
-                <!-- Professionnels -->
-                <div class="bg-white rounded-xl shadow-lg p-8 text-center card-hover transition-all duration-300">
-                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span class="text-4xl">🏪</span>
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-4">Professionnels</h3>
-                    <p class="text-gray-600">Commerçants, artisans, freelances, collectivités, TPE-PME n'étant pas encore suivis en cybersécurité.</p>
-                </div>
-                
-                <!-- Associations -->
-                <div class="bg-white rounded-xl shadow-lg p-8 text-center card-hover transition-all duration-300">
-                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span class="text-4xl">🏛️</span>
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-4">Associations</h3>
-                    <p class="text-gray-600">Clubs, centres sociaux et autres structures associatives ayant besoin de protection numérique.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Nos prestations Section -->
-    <section id="prestations" class="py-16 md:py-24 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Nos prestations</h2>
-                <div class="w-20 h-1 bg-cyan mx-auto mb-8"></div>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Des solutions adaptées à vos besoins et à votre budget pour une sécurité numérique efficace.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <!-- Sensibilisation & ateliers -->
-                <div class="bg-white rounded-xl shadow-lg p-8 service-card transition-all duration-300 hover:shadow-xl">
-                    <div class="icon-container w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 transition-colors duration-300">
-                        <span class="text-3xl">🔐</span>
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-4">Sensibilisation & ateliers</h3>
-                    <ul class="text-gray-600 space-y-2">
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-cyan mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span>Phishing, mots de passe, arnaques en ligne</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-cyan mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span>Confidentialité et protection des données</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-cyan mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span>Outils de protection simples et accessibles</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Audits & conseils -->
-                <div class="bg-white rounded-xl shadow-lg p-8 service-card transition-all duration-300 hover:shadow-xl">
-                    <div class="icon-container w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 transition-colors duration-300">
-                        <span class="text-3xl">🧾</span>
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-4">Audits & conseils</h3>
-                    <ul class="text-gray-600 space-y-2">
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-cyan mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span>Évaluation des risques numériques</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-cyan mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span>Solutions MFA, sauvegardes, antivirus</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-cyan mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span>Gestion des accès et surveillance</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Formations express -->
-                <div class="bg-white rounded-xl shadow-lg p-8 service-card transition-all duration-300 hover:shadow-xl">
-                    <div class="icon-container w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6 transition-colors duration-300">
-                        <span class="text-3xl">🎓</span>
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-4">Formations express</h3>
-                    <ul class="text-gray-600 space-y-2">
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-cyan mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span>Modules de 2 heures</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-cyan mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span>À distance ou en présentiel</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-cyan mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span>Support pédagogique fourni</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tarifs Section -->
-    <section id="tarifs" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Tarifs clairs</h2>
-                <div class="w-20 h-1 bg-cyan mx-auto mb-8"></div>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Des solutions abordables pour tous les budgets, parce que la cybersécurité ne doit pas être un luxe, mais une obligation.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <!-- Particuliers -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
-                    <div class="bg-dark text-white p-6 text-center">
-                        <h3 class="text-2xl font-semibold">Pour les particuliers</h3>
-                    </div>
-                    <div class="p-8">
-                        <div class="mb-6 text-center">
-                            <span class="text-4xl font-bold text-cyan">20 €</span>
-                            <span class="text-gray-600 ml-2">Tarif unique</span>
-                        </div>
-                        <h4 class="text-xl font-semibold mb-4">Diagnostique Cyber (jusqu'à 2h)</h4>
-                        <ul class="space-y-3 mb-8">
-                            <li class="flex items-start">
-                                <svg class="w-5 h-5 text-cyan mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                <span>Évaluation de la sécurité de votre réseau WiFi et box Internet</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="w-5 h-5 text-cyan mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                <span>Aide à la gestion de vos mots de passe (gestionnaire sécurisé et simplifié)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="w-5 h-5 text-cyan mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                <span>Conseils personnalisés sur vos appareils et vos usages</span>
-                            </li>
-                        </ul>
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <p class="text-gray-700"><strong>Objectif :</strong> Éviter les arnaques, protéger ses données et sécuriser sa vie numérique</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- TPE/PME et collectivités -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
-                    <div class="bg-dark text-white p-6 text-center">
-                        <h3 class="text-2xl font-semibold">Pour les TPE/PME et collectivités</h3>
-                    </div>
-                    <div class="p-8">
-                        <ul class="space-y-6 mb-6">
-                            <li>
-                                <div class="flex justify-between items-center mb-2">
-                                    <h4 class="font-semibold">Formation sensibilisation à la cybersécurité</h4>
-                                    <span class="text-cyan font-bold">80€</span>
-                                </div>
-                                <p class="text-gray-600 text-sm">nombre de personnes limité, 2H - Atelier interactif pour comprendre les menaces et les bons réflexes à adopter</p>
-                            </li>
-                            <li>
-                                <div class="flex justify-between items-center mb-2">
-                                    <h4 class="font-semibold">Audit Flash Sécurité</h4>
-                                    <span class="text-cyan font-bold">40€</span>
-                                </div>
-                                <p class="text-gray-600 text-sm">Évaluation de la sécurité de l'infrastructure (mots de passe, sauvegardes, WiFi, postes, accès). Livrable simple avec recommandations immédiates</p>
-                            </li>
-                            <li>
-                                <div class="flex justify-between items-center mb-2">
-                                    <h4 class="font-semibold">Accompagnement mensuel Cybersécurité</h4>
-                                    <span class="text-cyan font-bold">Sur Devis</span>
-                                </div>
-                                <p class="text-gray-600 text-sm">À partir de 15€/mois - Suivi, conseils, interventions ponctuelles, veille et accompagnement technique</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Associations -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
-                    <div class="bg-dark text-white p-6 text-center">
-                        <h3 class="text-2xl font-semibold">Pour les associations</h3>
-                    </div>
-                    <div class="p-8">
-                        <ul class="space-y-6 mb-6">
-                            <li>
-                                <div class="flex justify-between items-center mb-2">
-                                    <h4 class="font-semibold">Formation cybersécurité</h4>
-                                    <span class="text-cyan font-bold">40€</span>
-                                </div>
-                                <p class="text-gray-600 text-sm">2H - Sensibilisation aux bonnes pratiques</p>
-                            </li>
-                            <li>
-                                <div class="flex justify-between items-center mb-2">
-                                    <h4 class="font-semibold">Audit sécurité 'ANSSI'</h4>
-                                    <span class="text-cyan font-bold">Participation libre</span>
-                                </div>
-                                <p class="text-gray-600 text-sm">Don ou adhésion via 'HelloAsso'</p>
-                                <p class="text-gray-600 text-sm">Diagnostic proposé par l'Agence Nationale de la Sécurité des Systèmes d'Information :</p>
-                                <p class="text-gray-600 text-sm">Adhésion possible pour un suivi et des conseils toute l'année (adhésion 45€ / association)</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Bénéfices et engagement -->
-            <div class="max-w-4xl mx-auto mt-16 bg-white rounded-xl shadow-lg p-8">
-                <h3 class="text-2xl font-semibold mb-6 text-center">Nos engagements</h3>
-                
-                <div class="mb-8">
-                    <h4 class="text-xl font-semibold mb-4 flex items-center">
-                        <svg class="w-6 h-6 text-cyan mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        Bénéfices concrets de nos prestations
-                    </h4>
-                    <ul class="space-y-2 pl-10">
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-cyan mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span>Protéger sa famille ou ses salariés contre les fraudes</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-cyan mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span>Éviter la perte de documents ou d'accès</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-cyan mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span>Gagner en autonomie numérique</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="mb-8">
-                    <h4 class="text-xl font-semibold mb-4 flex items-center">
-                        <svg class="w-6 h-6 text-cyan mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        Tarifs associatifs
-                    </h4>
-                    <p class="pl-10">Nos tarifs tiennent compte des contraintes budgétaires des particuliers et TPE.</p>
-                </div>
-                
-                <div>
-                    <h4 class="text-xl font-semibold mb-4 flex items-center">
-                        <svg class="w-6 h-6 text-cyan mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        Engagement solidaire
-                    </h4>
-                    <div class="pl-10 bg-gray-50 p-4 rounded-lg flex items-center">
-                        <span class="text-3xl mr-4">💡</span>
-                        <p class="font-medium">1 formation entreprise achetée = 1 accompagnement personnalisé offert à domicile.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pourquoi nous choisir Section -->
-    <section class="py-16 md:py-24 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Pourquoi nous choisir ?</h2>
-                <div class="w-20 h-1 bg-cyan mx-auto mb-8"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <!-- Point fort 1 -->
-                <div class="bg-white rounded-xl shadow-lg p-8 text-center card-hover transition-all duration-300">
-                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span class="text-3xl">🏡</span>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">Présence locale</h3>
-                    <p class="text-gray-600">Interventions de proximité sur la Côte d'Émeraude (Départements 35 et 22)</p>
-                </div>
-                
-                <!-- Point fort 2 -->
-                <div class="bg-white rounded-xl shadow-lg p-8 text-center card-hover transition-all duration-300">
-                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span class="text-3xl">🧩</span>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">Solutions accessibles</h3>
-                    <p class="text-gray-600">Des approches simples, concrètes et à bas coût pour tous les budgets</p>
-                </div>
-                
-                <!-- Point fort 3 -->
-                <div class="bg-white rounded-xl shadow-lg p-8 text-center card-hover transition-all duration-300">
-                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span class="text-3xl">💬</span>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">Pédagogie et bienveillance</h3>
-                    <p class="text-gray-600">Pas de jargon technique, des explications claires et adaptées à votre niveau</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Passez à l'action Section -->
-    <section id="contact" class="py-16 md:py-24 gradient-bg text-white relative overflow-hidden">
-        <!-- Cyber particles -->
-        <div class="cyber-particle w-3 h-3" style="top: 20%; left: 10%;"></div>
-        <div class="cyber-particle w-5 h-5" style="top: 40%; left: 20%;"></div>
-        <div class="cyber-particle w-2 h-2" style="top: 60%; left: 15%;"></div>
-        <div class="cyber-particle w-4 h-4" style="top: 30%; left: 80%;"></div>
-        <div class="cyber-particle w-3 h-3" style="top: 70%; left: 85%;"></div>
-        
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Passez à l'action !</h2>
-                <div class="w-20 h-1 bg-cyan mx-auto mb-8"></div>
-                <p class="text-xl max-w-3xl mx-auto">
-                    Protégez votre vie numérique dès aujourd'hui avec nos solutions accessibles et adaptées à vos besoins.
-                </p>
-            </div>
-            
-            <div class="max-w-3xl mx-auto">
-                <div class="bg-white rounded-xl shadow-lg p-8">
-                    <form id="contact-form" class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-dark/50 rounded-xl p-6 mb-6 border border-cyan/20">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-2xl">🗓️</span>
                             <div>
-                                <label for="name" class="block text-gray-700 font-medium mb-2">Nom</label>
-                                <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan text-gray-900" required>
-                            </div>
-                            <div>
-                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                                <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan text-gray-900" required>
+                                <p class="font-semibold text-white">Quand ?</p>
+                                <p class="text-cyan">22 Novembre 2024</p>
                             </div>
                         </div>
-                        
-                        <div>
-                            <label for="subject" class="block text-gray-700 font-medium mb-2">Je souhaite</label>
-                            <select id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan text-gray-900">
-                                <option value="atelier">Planifier une formation / sensibilisation dans mes locaux</option>
-                                <option value="audit">Demander un audit express</option>
-                                <option value="particulier">Prendre RDV pour un accompagnement personnalisé</option>
-                                <option value="info">Obtenir plus d'informations</option>
-                            </select>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-2xl">⏰</span>
+                            <div>
+                                <p class="font-semibold text-white">Heure</p>
+                                <p class="text-cyan">14h30</p>
+                            </div>
                         </div>
-                        
-                        <div>
-                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
-                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan text-gray-900" required></textarea>
-                        </div>
-                        
-                        <div class="text-center">
-                            <button type="submit" class="btn-primary px-8 py-3 rounded-full text-dark font-medium text-lg">Envoyer ma demande</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-                
-                <div class="mt-12 text-center">
-                    <p class="text-xl mb-4">Ou contactez-nous directement</p>
-                    <a href="mailto:contact@cyberemeraude.fr" class="text-cyan text-xl font-semibold hover:underline">contact@cyberemeraude.fr</a>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <div class="flex items-center mb-4">
-                        <!-- Nouveau logo bouclier (moyen) -->
-                        <svg class="w-12 h-12 mr-3 logo-glow" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M50 5L85 20V50C85 70 70 85 50 95C30 85 15 70 15 50V20L50 5Z" fill="#121212" stroke="#00e5ff" stroke-width="3"/>
-                            <path class="shield-pulse" d="M50 15L75 25V50C75 65 65 75 50 85C35 75 25 65 25 50V25L50 15Z" fill="none" stroke="#00e5ff" stroke-width="2"/>
-                            <path d="M50 40L60 50L50 60L40 50L50 40Z" fill="#00e5ff"/>
-                            <path d="M50 25L65 32V48C65 58 58 65 50 70C42 65 35 58 35 48V32L50 25Z" stroke="#00e5ff" stroke-width="1" fill="none"/>
-                        </svg>
-                        <div class="text-2xl font-bold flex items-center">
-                            <span class="text-white">CYBER</span>
-                            <span class="text-cyan ml-1">ÉMERAUDE</span>
+                <div class="text-center">
+                    <p class="text-gray-300 mb-4">Organisée par l'association LAECUM</p>
+                    <button onclick="showContactInfo()" class="btn-primary text-white px-8 py-3 rounded-full font-semibold pulse-animation">
+                        S'inscrire maintenant
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contact Card (Initially Hidden) -->
+            <div id="contactCard" class="bg-white rounded-2xl card-shadow card-hover p-8 mb-8 hidden border border-gray-100 transition-all duration-300">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 btn-primary rounded-full flex items-center justify-center mx-auto mb-4 logo-glow">
+                        <span class="text-3xl text-white">📧</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Inscription</h2>
+                    <p class="text-gray-600">Contactez l'association LAECUM pour vous inscrire</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6 border border-cyan/30">
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xl">🏢</span>
+                            <div>
+                                <p class="font-semibold text-gray-800">Association</p>
+                                <p class="text-gray-600">LAECUM</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xl">✉️</span>
+                            <div>
+                                <p class="font-semibold text-gray-800">Email</p>
+                                <a href="mailto:asso.laecum@gmail.com" class="text-cyan hover:opacity-80 transition-colors">
+                                    asso.laecum@gmail.com
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <p class="text-gray-400">La cybersécurité accessible à tous</p>
-                    <p class="mt-4 text-gray-400 flex items-start">
-                        <span class="text-green-500 mr-2">🟢</span>
-                        <span>Cyber Émeraude est une association à but non lucratif</span>
-                    </p>
-                    <p class="mt-2 text-gray-400 flex items-start">
-                        <span class="text-cyan mr-2">📍</span>
-                        <span>Basée à Saint Malo – Interventions locales sur place ou à distance</span>
-                    </p>
                 </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
-                    <p class="mb-2">
-                        <a href="mailto:contact@cyberemeraude.fr" class="text-gray-400 hover:text-cyan">contact@cyberemeraude.fr</a>
-                    </p>
-                    <div class="flex space-x-4 mt-4">
-                        <a href="#" class="text-gray-400 hover:text-cyan">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
+            </div>
+
+            <!-- Pour en savoir plus Card -->
+            <div class="dark-card rounded-2xl card-shadow card-hover p-8 mb-8 border border-cyan/30 transition-all duration-300">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 btn-primary rounded-full flex items-center justify-center mx-auto mb-4 logo-glow">
+                        <span class="text-3xl text-white">🔍</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Pour en savoir plus</h2>
+                    <p class="text-gray-300">Contactez Cyber Emeraude pour plus d'informations</p>
+                </div>
+
+                <div class="bg-dark/50 rounded-xl p-6 border border-cyan/20">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">👨‍💻</span>
+                                <div>
+                                    <p class="font-semibold text-white">Consultants</p>
+                                    <p class="text-cyan">Paul SANTANA</p>
+                                    <p class="text-cyan">Léo GAUTIER</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <a href="tel:0642390469" class="flex items-center space-x-3 text-cyan hover:opacity-80 transition-colors">
+                                <span class="text-2xl">📞</span>
+                                <div>
+                                    <p class="font-semibold">Téléphone</p>
+                                    <p>06 42 39 04 69</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center space-y-4">
+                        <div class="flex justify-center mb-8">
+                            <!-- Nouveau logo bouclier (plus grand) -->
+                            <img src="https://raw.githubusercontent.com/Chokapz/cyberemeraude.github.io/main/logofinal.png" alt="Logo Cyber Émeraude" class="w-80 h-80 object-contain mx-auto logo-glow" />
+                        </div>
+                        <a href="mailto:contact@cyberemeraude.fr" class="inline-flex items-center space-x-2 btn-primary text-white px-6 py-3 rounded-full font-semibold mr-3">
+                            <span>✉️</span>
+                            <span>Écrire à Cyber Emeraude</span>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-cyan">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 10.054 10.054 0 01-3.127 1.184 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-cyan">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
+                        <a href="https://cyberemeraude.fr/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 btn-secondary text-cyan px-6 py-3 rounded-full font-semibold">
+                            <span>🌐</span>
+                            <span>Visiter notre site web</span>
                         </a>
                     </div>
                 </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Informations légales</h4>
-                    <p class="text-gray-400 mb-2">Association Cyber Émeraude</p>
-                    <p class="text-gray-400 mb-2">RNA : W354008188</p>
-                    <p class="text-gray-400">SIRET : 98957608700013</p>
-                    <p class="mt-4">
-                        <a href="#" class="text-gray-400 hover:text-cyan">Mentions légales</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-dark/90 backdrop-blur-sm border-t border-cyan/20 mt-12">
+            <div class="max-w-4xl mx-auto px-6 py-6">
+                <div class="text-center text-white/80">
+                    <p class="mb-2 flex items-center justify-center space-x-2">
+                        <span>🛡️</span>
+                        <span>Sensibilisation à la Cybersécurité</span>
+                        <span>🔐</span>
+                    </p>
+                    <p class="text-sm flex items-center justify-center space-x-2 text-cyan">
+                        <span>🤝</span>
+                        <span>Une initiative des associations Cyber Emeraude & LAECUM</span>
+                        <span>💻</span>
                     </p>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
-                <p class="text-gray-400">&copy; 2025 Cyber Émeraude. Tous droits réservés.</p>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </main>
 
     <script>
-        // Form submission handler
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
             
-            // In a real implementation, this would send the form data to a server
-            // For this demo, we'll just show a success message
-            const formElements = this.elements;
-            for (let i = 0; i < formElements.length; i++) {
-                if (formElements[i].type !== 'submit') {
-                    formElements[i].value = '';
-                }
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random size between 2px and 8px
+                const size = Math.random() * 6 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Random horizontal position
+                particle.style.left = Math.random() * 100 + '%';
+                
+                // Random animation duration between 10s and 20s
+                const duration = Math.random() * 10 + 10;
+                particle.style.animationDuration = duration + 's';
+                
+                // Random delay
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                
+                particlesContainer.appendChild(particle);
+                
+                // Remove particle after animation
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, (duration + 5) * 1000);
             }
             
-            alert('Merci pour votre message ! Nous vous contacterons très rapidement.');
-        });
+            // Create initial particles
+            for (let i = 0; i < 15; i++) {
+                setTimeout(createParticle, i * 1000);
+            }
+            
+            // Continue creating particles
+            setInterval(createParticle, 2000);
+        }
         
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+        // Start particles when page loads
+        document.addEventListener('DOMContentLoaded', createParticles);
+        
+        function showContactInfo() {
+            const contactCard = document.getElementById('contactCard');
+            const button = event.target;
+            
+            // Show contact card with smooth animation
+            contactCard.classList.remove('hidden');
+            contactCard.style.opacity = '0';
+            contactCard.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                contactCard.style.transition = 'all 0.5s ease-out';
+                contactCard.style.opacity = '1';
+                contactCard.style.transform = 'translateY(0)';
+            }, 10);
+            
+            // Update button
+            button.innerHTML = '📧 Informations d\'inscription affichées ✓';
+            button.classList.remove('pulse-animation');
+            button.classList.add('bg-green-600', 'hover:bg-green-700');
+            button.classList.remove('btn-primary');
+            
+            // Show info about email
+            setTimeout(() => {
+                const infoDiv = document.createElement('div');
+                infoDiv.className = 'mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200';
+                infoDiv.innerHTML = '<p class="text-sm text-blue-800"><span class="font-semibold">ℹ️ Information :</span> Pour vous inscrire, envoyez un email à <strong>asso.laecum@gmail.com</strong> ou utilisez les informations ci-dessous.</p>';
+                contactCard.appendChild(infoDiv);
+            }, 500);
+            
+            // Scroll to contact card
+            setTimeout(() => {
+                contactCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+        }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'964ebdc625ca034a',t:'MTc1MzQ3ODg0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'992bb3d380f36fab',t:'MTc2MTE2NDUwMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
-
-
-
-
-
-
